@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".UploadPost">
+
+    <ImageView
+        android:id="@+id/imageViewAdd"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/baseline_add_24" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageViewAdd2"-->
+<!--        android:layout_width="170dp"-->
+<!--        android:layout_height="170dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginStart="196dp"-->
+<!--        android:layout_marginLeft="170dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@drawable/baseline_add_24" />-->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="name"
+        android:id="@+id/inputName"
+        android:layout_below="@+id/imageViewAdd"
+        android:padding="12dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewProgress"
+        android:layout_below="@id/inputName"
+        android:text="0.0%"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"/>
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_below="@+id/textViewProgress"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload"
+        android:id="@+id/uploadBtn"
+        android:layout_below="@+id/progressBar"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20sp"/>
+
+
+</RelativeLayout>
