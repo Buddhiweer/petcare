@@ -1,23 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    tools:context=".Home"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_view" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search"
+            app:iconifiedByDefault="false"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <RadioGroup
+            android:id="@+id/filterRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/fillterAll"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:button="@android:color/transparent"
+                android:drawableTop="@drawable/all"
+                android:background="@drawable/filter_background_selector"
+                android:layout_weight="0.2"
+                android:gravity="center"/>
+
+            <RadioButton
+                android:id="@+id/fillterDogs"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:button="@android:color/transparent"
+                android:drawableTop="@drawable/dog"
+                android:background="@drawable/filter_background_selector"
+                android:layout_weight="0.2"/>
+
+            <RadioButton
+                android:id="@+id/fillterCats"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:button="@android:color/transparent"
+                android:drawableTop="@drawable/cat"
+                android:background="@drawable/filter_background_selector"
+                android:layout_weight="0.2"/>
+
+            <RadioButton
+                android:id="@+id/filtterBirds"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:button="@android:color/transparent"
+                android:drawableTop="@drawable/dog"
+                android:background="@drawable/filter_background_selector"
+                android:layout_weight="0.2"/>
+
+            <RadioButton
+                android:id="@+id/fillterOthers"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:button="@android:color/transparent"
+                android:drawableTop="@drawable/other"
+                android:background="@drawable/filter_background_selector"
+                android:layout_weight="0.2"/>
 
 
+        </RadioGroup>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="All"
+            android:textSize="15sp"
+            android:layout_weight="0.2"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Dogs"
+            android:textSize="15sp"
+            android:layout_weight="0.2"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Cats"
+            android:textSize="15sp"
+            android:layout_weight="0.2"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Birds"
+            android:textSize="15sp"
+            android:layout_weight="0.2"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Others"
+            android:textSize="15sp"
+            android:layout_weight="0.2"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/noItemsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No Items"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:visibility="gone"
+            android:layout_centerInParent="true" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppbar"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="45dp"
         android:layout_gravity="bottom"
         android:background="@color/PrimaryColor"
         android:backgroundTint="@color/PrimaryColor"
@@ -26,13 +183,14 @@
         app:menu="@menu/bottom_manu" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_btn"
-        android:src="@drawable/baseline_add_24"
-        app:maxImageSize="40dp"
         android:backgroundTint="@color/teal_200"
-        app:layout_anchor="@id/bottomAppbar"/>
+        android:src="@drawable/baseline_add_24"
+        app:layout_anchor="@id/bottomAppbar"
+        app:maxImageSize="40dp" />
 
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

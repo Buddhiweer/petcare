@@ -95,6 +95,7 @@
                 android:layout_marginLeft="100dp"
                 android:src="@drawable/google"/>
             <ImageView
+                android:id="@+id/facebook_btn"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginLeft="60dp"

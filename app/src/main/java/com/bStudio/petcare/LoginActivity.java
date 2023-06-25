@@ -1,9 +1,5 @@
 package com.bStudio.petcare;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -36,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     ImageView googleBtn;
+    ImageView facebookBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         createAccountBtnTextView.setOnClickListener((v -> startActivity(new Intent(LoginActivity.this,CreateAccountActivity.class))));
 
         googleBtn = findViewById(R.id.google_btn);
+        facebookBtn = findViewById(R.id.facebook_btn);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this,gso);
@@ -69,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                 signIn();
             }
         });
+
+
     }
 
     void signIn(){
@@ -79,16 +82,19 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1000){
+        if (resultCode == RESULT_OK) {
+            // Handle the successful sign-in
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
             try {
-                task.getResult(ApiException.class);
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                // Use the account information
                 navigateToSecondActivity();
             } catch (ApiException e) {
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                // Handle failed sign-in
+                Toast.makeText(this, "Google sign-in failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
+
     }
 
     void navigateToSecondActivity(){
